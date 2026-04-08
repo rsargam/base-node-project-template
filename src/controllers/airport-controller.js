@@ -56,7 +56,7 @@ return res
 async function getAirport(req,res){
 try{
 
-const airports = await AirportService.getAirport(req.params.id);
+const airport = await AirportService.getAirport(req.params.id);
 
 SuccessResponse.data = airport;
 
