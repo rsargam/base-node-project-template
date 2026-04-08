@@ -58,7 +58,7 @@ module.exports = (sequelize, DataTypes) => {
     allowNull:false
   }, {
     sequelize,
-    modelName: 'flight',
+    modelName: 'Flight',
   });
   return flight;
 };
