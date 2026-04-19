@@ -9,17 +9,34 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
+    // static associate(models) {
+    //   // define association here
+    //   this.belongsTo(models.Airplane,{
+    //     foreignKey:'airplaneId'
+    //   });
+    //   this.belongsTo(models.Airport,{
+    //     foreignKey:'code'
+    //   });
+    //   this.belongsTo(models.Airport,{
+    //     foreignKey:'code'
+    //   });
+    // }
     static associate(models) {
-      // define association here
-      this.belongsTo(models.Airplane,{
-        foreignKey:'airplaneId'
+
+      this.belongsTo(models.Airplane, {
+        foreignKey: 'airplaneId'
       });
-      this.belongsTo(models.Airport,{
-        foreignKey:'code'
+    
+      this.belongsTo(models.Airport, {
+        foreignKey: 'departureAirportId',
+        as: 'departureAirport'
       });
-      this.belongsTo(models.Airport,{
-        foreignKey:'code'
+    
+      this.belongsTo(models.Airport, {
+        foreignKey: 'arrivalAirportId',
+        as: 'arrivalAirport'
       });
+    
     }
   }
   flight.init({
@@ -54,8 +71,11 @@ module.exports = (sequelize, DataTypes) => {
     boardingGate: {
       type:DataTypes.STRING
    },
-    totalSeats: DataTypes.INTEGER,
+    totalSeats: {
+      type:DataTypes.INTEGER,
     allowNull:false
+    }
+    
   }, {
     sequelize,
     modelName: 'Flight',
